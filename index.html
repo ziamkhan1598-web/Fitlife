@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FitLife - Your workouts, health tips and motivation in one app</title>
+<meta name="description" content="FitLife builds your weekly workout plan, explains what to do and avoid for common health issues, and keeps you motivated with points, streaks and badges.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&display=swap">
+<style>
+:root{--bg:#f4f6f1;--sf:#fff;--ink:#12261c;--mute:#57695f;--line:#d9e2da;--pri:#1f7a4d;--on:#fff;--hot:#d9531a;--mint:#dff2e6;--deep:#12362a;--ondeep:#eaf6ee;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1712;--sf:#15231b;--ink:#e6f0e9;--mute:#93a99b;--line:#26382d;--pri:#5cc48f;--on:#0b1a12;--hot:#ff8a55;--mint:#17372a;--deep:#0a2218;--ondeep:#e6f0e9}}
+:root[data-theme="dark"]{--bg:#0d1712;--sf:#15231b;--ink:#e6f0e9;--mute:#93a99b;--line:#26382d;--pri:#5cc48f;--on:#0b1a12;--hot:#ff8a55;--mint:#17372a;--deep:#0a2218;--ondeep:#e6f0e9}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Archivo,system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{max-width:1060px;margin:0 auto;padding:0 20px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.3rem;text-decoration:none}
+header nav a{margin-left:22px;text-decoration:none;font-weight:600;color:var(--mute)}
+header nav a:hover{color:var(--ink)}
+@media(max-width:640px){header nav a:not(.cta){display:none}}
+.btn{display:inline-block;background:var(--pri);color:var(--on);font-weight:800;text-decoration:none;border:0;border-radius:10px;padding:13px 22px;cursor:pointer;font-family:inherit;font-size:1rem}
+.btn.alt{background:none;color:var(--ink);border:2px solid var(--line)}
+.btn.hot{background:var(--hot);color:#fff}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:34px 0 70px}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+h1{font-size:clamp(2.5rem,6.2vw,4.6rem);line-height:1;letter-spacing:-.035em;font-weight:900;margin:0 0 18px}
+.lead{font-size:1.2rem;color:var(--mute);max-width:34ch;margin:0 0 26px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.demo{background:var(--deep);color:var(--ondeep);border-radius:18px;padding:22px}
+.demo h2{margin:0 0 4px;font-size:1.15rem;font-weight:800}
+.demo p{margin:0 0 14px;opacity:.75;font-size:.95rem}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chips button{font:inherit;font-size:.88rem;font-weight:600;color:var(--ondeep);background:transparent;border:1.5px solid rgba(255,255,255,.28);border-radius:99px;padding:6px 13px;cursor:pointer}
+.chips button.on{background:var(--hot);border-color:var(--hot);color:#fff}
+.plan div{display:grid;grid-template-columns:44px 92px 1fr;gap:6px;padding:7px 0;border-top:1px solid rgba(255,255,255,.13);font-size:.95rem}
+.plan div:first-child{border-top:0}
+.plan b{font-weight:800}
+.plan .rest{opacity:.45}
+.demo .row2{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:10px;flex-wrap:wrap}
+.demo select{font:inherit;background:transparent;color:var(--ondeep);border:1.5px solid rgba(255,255,255,.28);border-radius:8px;padding:6px 8px}
+.demo select option{color:#12261c}
+.demo .shuf{font:inherit;font-weight:700;background:none;border:0;color:var(--ondeep);text-decoration:underline;cursor:pointer}
+section{padding:64px 0;border-top:1px solid var(--line)}
+h2.t{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.08;letter-spacing:-.025em;font-weight:900;margin:0 0 10px;max-width:20ch}
+.sub{color:var(--mute);max-width:52ch;margin:0 0 30px}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+@media(max-width:760px){.feat{grid-template-columns:1fr}}
+.feat div{padding:18px 0;border-top:1px solid var(--line)}
+.feat h3{margin:0 0 4px;font-size:1.15rem;font-weight:800}
+.feat p{margin:0;color:var(--mute)}
+details{border-top:1px solid var(--line);padding:14px 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:800;font-size:1.08rem}
+details p,details ul{color:var(--mute);margin:10px 0 0}
+details b{color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.get{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){.get{grid-template-columns:1fr}}
+.pkg{background:var(--sf);border:1px solid var(--line);border-radius:16px;padding:22px}
+.pkg h3{margin:0 0 2px;font-size:1.3rem;font-weight:900}
+.pkg .tag{color:var(--pri);font-weight:700;font-size:.92rem;margin-bottom:12px}
+.pkg ol{padding-left:20px;margin:0 0 18px;color:var(--mute)}
+.pkg li{margin-bottom:5px}
+.stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:6px}
+.stats b{display:block;font-size:2.6rem;font-weight:900;color:var(--pri);line-height:1}
+.stats span{color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--mute);font-size:.93rem}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%;text-align:center}
+#toast.show{opacity:1}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="w">
+<header>
+  <a class="brand" href="#top" aria-label="FitLife home">
+    <svg width="38" height="38" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="22" fill="#1f7a4d"/><g fill="#fff"><rect x="23" y="39" width="54" height="7" rx="2"/><rect x="25.5" y="25" width="9" height="34" rx="2"/><rect x="65.5" y="25" width="9" height="34" rx="2"/><rect x="17.5" y="31" width="7" height="22" rx="2"/><rect x="75.5" y="31" width="7" height="22" rx="2"/></g><polyline points="16,80 36,80 43,68 52,90 59,80 84,80" fill="none" stroke="#c8f5dc" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+    FitLife
+  </a>
+  <nav><a href="#features">Features</a><a href="#health">Health guide</a><a href="#faq">FAQ</a><a class="cta btn" href="#get">Get the app</a></nav>
+</header>
+</div>
+
+<main id="top">
+<div class="w hero">
+  <div>
+    <h1>A fitter week starts with a plan you will actually follow.</h1>
+    <p class="lead">FitLife builds your weekly workouts, explains what to do and avoid for common health issues, and keeps you going with points, streaks and badges.</p>
+    <div class="btns"><a class="btn hot" href="#get">Get FitLife free</a><a class="btn alt" href="#features">See what it does</a></div>
+  </div>
+  <div class="demo" aria-live="polite">
+    <h2>Try the plan builder</h2>
+    <p>Pick a goal and see a week built for you.</p>
+    <div class="chips" id="goals" role="group" aria-label="Goal"></div>
+    <div class="plan" id="plan"></div>
+    <div class="row2">
+      <label>Days a week <select id="days"><option>3</option><option selected>4</option><option>5</option><option>6</option></select></label>
+      <button class="shuf" id="shuf" type="button">Shuffle workouts</button>
+    </div>
+  </div>
+</div>
+
+<div class="w"><section id="features">
+  <h2 class="t">Everything you need, nothing you don't.</h2>
+  <p class="sub">One simple app for training, recovery and staying motivated. No ads, no sign-up with an email.</p>
+  <div class="feat">
+    <div><h3>Weekly schedule</h3><p>Choose 3 to 6 workout days. FitLife matches sessions to your goal and fitness level, and resets every Monday.</p></div>
+    <div><h3>14 guided workouts</h3><p>Cardio, strength, flexibility and interval sessions, each with clear steps, timing and a safety note.</p></div>
+    <div><h3>Health issues guide</h3><p>Plain-language do's and don'ts for back pain, knee pain, blood pressure, diabetes, stress, asthma and sleep.</p></div>
+    <div><h3>Points, ranks and badges</h3><p>Earn points for every workout and check-in. Climb from Starter to Legend and unlock seven badges.</p></div>
+    <div><h3>Daily check-in</h3><p>Log mood, water and sleep in ten seconds and get a tip that fits how you feel today.</p></div>
+    <div><h3>Streaks and motivation</h3><p>A daily quote, a streak counter and a leaderboard make consistency feel good.</p></div>
+  </div>
+</section></div>
+
+<div class="w"><section id="health">
+  <div class="two">
+    <div>
+      <h2 class="t">Know what to do, and what to avoid.</h2>
+      <p class="sub">Tap a topic for a quick preview. The app covers eight in full, with exercises that suit each one and warning signs that mean it is time to see a doctor.</p>
+      <div class="stats"><div><b>14</b><span>workouts</span></div><div><b>8</b><span>health topics</span></div><div><b>7</b><span>badges</span></div></div>
+    </div>
+    <div>
+      <details open><summary>Lower back pain</summary><ul><li><b>Do:</b> walk daily, strengthen glutes and core, change position often.</li><li><b>Don't:</b> stay in bed for days or lift heavy loads while twisting.</li></ul></details>
+      <details><summary>High blood pressure</summary><ul><li><b>Do:</b> steady moderate cardio, breathe normally during effort.</li><li><b>Don't:</b> hold your breath while lifting or start with very intense sessions.</li></ul></details>
+      <details><summary>Stress and anxiety</summary><ul><li><b>Do:</b> walk outdoors, practise slow breathing, keep a regular sleep time.</li><li><b>Don't:</b> isolate yourself or overtrain to burn it off.</li></ul></details>
+      <details><summary>Poor sleep</summary><ul><li><b>Do:</b> keep regular bed and wake times, exercise earlier in the day.</li><li><b>Don't:</b> drink caffeine after midday or train hard right before bed.</li></ul></details>
+    </div>
+  </div>
+</section></div>
+
+<div class="w"><section id="get">
+  <h2 class="t">Get FitLife on your device.</h2>
+  <p class="sub">Free on Windows, phones and any modern browser. Your data stays on your own device.</p>
+  <div class="get">
+    <div class="pkg"><h3>Windows</h3><div class="tag">Desktop app (.exe)</div>
+      <ol><li>Download the FitLife zip.</li><li>Double-click build_exe.bat, or use the ready-made FitLife.exe.</li><li>Open FitLife and create your account.</li></ol>
+      <a class="btn" href="#" data-link="windows">Download for Windows</a></div>
+    <div class="pkg"><h3>Phone</h3><div class="tag">Installs from the web</div>
+      <ol><li>Open the FitLife link on your phone.</li><li>Android: menu, then Install app. iPhone: Share, then Add to Home Screen.</li><li>Open it from your home screen, even offline.</li></ol>
+      <a class="btn" href="#" data-link="web">Open web app</a></div>
+    <div class="pkg"><h3>Browser</h3><div class="tag">No install at all</div>
+      <ol><li>Download the single FitLife file.</li><li>Double-click it. It opens in Chrome, Edge, Safari or Firefox.</li><li>Start your first plan.</li></ol>
+      <a class="btn alt" href="#" data-link="html">Download the file</a></div>
+  </div>
+</section></div>
+
+<div class="w"><section id="faq">
+  <h2 class="t">Questions, answered.</h2>
+  <p class="sub"></p>
+  <details><summary>Is FitLife really free?</summary><p>Yes. There are no ads and no subscription.</p></details>
+  <details><summary>Where is my data stored?</summary><p>On your own device. FitLife does not send your workouts, check-ins or PIN anywhere.</p></details>
+  <details><summary>Does it work offline?</summary><p>Yes. After the first load, the phone and desktop versions work without internet.</p></details>
+  <details><summary>Is this medical advice?</summary><p>No. FitLife gives general information only. Talk to a doctor before starting a new routine, especially if you have a health condition, and stop exercising if you feel chest pain, dizziness or sharp pain.</p></details>
+  <details><summary>Can my family use the same computer?</summary><p>Yes. Each person creates their own account with a PIN, and the leaderboard shows everyone on that computer.</p></details>
+</section></div>
+</main>
+
+<div class="w"><footer>
+  <p><b>FitLife</b> &copy; 2026. General information only, not medical advice.</p>
+</footer></div>
+<div id="toast" role="status"></div>
+
+<script>
+const SPLIT={'Lose weight':['Cardio','Strength','HIIT','Cardio','Strength','Flexibility'],'Build strength':['Strength','Cardio','Strength','Strength','Flexibility','Cardio'],'Stress relief':['Flexibility','Cardio','Flexibility','Strength','Flexibility','Cardio'],'General fitness':['Cardio','Strength','Flexibility','Cardio','Strength','HIIT']};
+const NAMES={Cardio:['Brisk walk','Cycling','Jog / walk intervals'],Strength:['Bodyweight squats','Glute bridges','Push-ups'],HIIT:['Beginner intervals'],Flexibility:['Beginner yoga flow','Full-body stretch','Hip and back mobility']};
+const PAT={3:[0,2,4],4:[0,1,3,5],5:[0,1,2,4,5],6:[0,1,2,3,4,5]};
+const DAYS=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+let goal='General fitness',seed=0;
+const $=id=>document.getElementById(id);
+function draw(){
+  const n=+$('days').value,map={};
+  PAT[n].forEach((d,i)=>{const t=SPLIT[goal][i%6],l=NAMES[t];map[d]={t,w:l[(i+seed)%l.length]}});
+  $('plan').innerHTML=DAYS.map((d,i)=>map[i]?`<div><b>${d}</b><span>${map[i].t}</span><span>${map[i].w}</span></div>`:`<div class="rest"><b>${d}</b><span>Rest</span><span>Recover</span></div>`).join('');
+  $('goals').innerHTML=Object.keys(SPLIT).map(g=>`<button type="button" class="${g===goal?'on':''}" aria-pressed="${g===goal}" data-g="${g}">${g}</button>`).join('');
+}
+$('goals').addEventListener('click',e=>{const g=e.target.dataset.g;if(g){goal=g;draw()}});
+$('days').addEventListener('change',draw);
+$('shuf').addEventListener('click',()=>{seed++;draw()});
+draw();
+/* Set your real download links here once the files are hosted (GitHub Releases, Netlify, Drive...). */
+const LINKS={windows:'',web:'',html:''};
+document.querySelectorAll('[data-link]').forEach(a=>a.addEventListener('click',e=>{
+  const u=LINKS[a.dataset.link];
+  if(u){a.href=u;return}
+  e.preventDefault();const t=$('toast');t.textContent='Download link coming soon.';t.className='show';clearTimeout(draw.t);draw.t=setTimeout(()=>t.className='',2500);
+}));
+</script>
+</body>
+</html>
